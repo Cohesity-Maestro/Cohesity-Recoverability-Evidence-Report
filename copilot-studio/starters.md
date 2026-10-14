@@ -1,0 +1,5 @@
+- Produce a recoverability evidence report for the last 30 days
+- Which protection groups have an evidence gap and why?
+- Show recovery point evidence for <cluster name>
+- Evidence report for the last 90 days with a 98% success threshold
+- Which groups have no offsite copy or no immutability?

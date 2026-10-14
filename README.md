@@ -2,12 +2,24 @@
 
 **Author:** Akshay Kumar, Dir, Solutions Architecture ([akshay.kumar2@cohesity.com](mailto:akshay.kumar2@cohesity.com))
 
-A Claude skill that turns live Helios run and snapshot metadata into an audit-ready **recoverability evidence report**, published as a live, private Claude Artifact that refreshes every 4 hours. For every protection group in scope it shows, over a reporting period (default 30 days), the success rate, restorable recovery points, newest and oldest recovery point, RPO gaps against the policy schedule, offsite copy status and immutability, and gives an **Evidenced / Partial / Gap** verdict.
+A Claude skill, also available as a Microsoft Copilot Studio agent, that turns live Helios run and snapshot metadata into an audit-ready **recoverability evidence report**, published as a live, private Claude Artifact that refreshes every 4 hours. For every protection group in scope it shows, over a reporting period (default 30 days), the success rate, restorable recovery points, newest and oldest recovery point, RPO gaps against the policy schedule, offsite copy status and immutability, and gives an **Evidenced / Partial / Gap** verdict.
 
-- Skill: [`skill/Cohesity-Recoverability-Evidence-Report/SKILL.md`](skill/Cohesity-Recoverability-Evidence-Report/SKILL.md) (the full page template is embedded in it)
+- Claude skill: [`claude/Cohesity-Recoverability-Evidence-Report/SKILL.md`](claude/Cohesity-Recoverability-Evidence-Report/SKILL.md) (the full page template is embedded in it)
 - Output: one claude.ai **Artifact** titled `Cohesity Recoverability Evidence Report` (no static HTML file), with a **Download evidence CSV** button
 - Refresh: scheduled task `cohesity-recoverability-evidence-refresh`, cron `0 */4 * * *`
 - Data source: the **Helios MCP server** (`helios-mcp` connector). Everything is read-only.
+
+## Two Versions
+
+| | Claude skill | Microsoft Copilot Studio agent |
+|---|---|---|
+| Folder | [`claude/`](claude/Cohesity-Recoverability-Evidence-Report/SKILL.md) | [`copilot-studio/`](copilot-studio/README.md) |
+| Output | Live, private Claude Artifact, refreshed every 4 hours | Answers in chat, with tables, on demand |
+| Helios access | `helios-mcp` connector, read-only | Helios MCP server added as a tool, read-only |
+| Setup | Install the skill in Claude (see Install below) | Paste `instructions.md`, upload `knowledge/` files, add the Helios MCP tool |
+| Screenshot | Below | Not applicable (chat answers) |
+
+The sections below describe the Claude skill unless a heading says Copilot Studio.
 
 ## What this report proves, and what it does not
 
@@ -47,7 +59,7 @@ Paused groups are judged by the same rules and noted as paused.
 
 ## Install
 
-1. Zip the folder `skill/Cohesity-Recoverability-Evidence-Report` so `SKILL.md` is inside it.
+1. Zip the folder `claude/Cohesity-Recoverability-Evidence-Report` so `SKILL.md` is inside it.
 2. Add it as a custom skill in Claude (Settings, Skills, upload) or copy it into your skills directory.
 3. Confirm the Helios MCP connector is connected.
 
@@ -88,17 +100,28 @@ If `helios-mcp` is down or its token has expired, a scheduled refresh does not c
 - Groups on clusters that are not connected to Helios, or whose queries time out, are not assessed and are listed as such.
 - Capped paging on very busy groups is flagged in the footnote.
 
-## Screenshots
+## Screenshots (Claude Version)
 
 ![Recoverability Evidence Report](docs/screenshots/recoverability-evidence-report.png)
 
 _Captured from the published artifact; cluster and group names are lab data._
+
+## Microsoft Copilot Studio Version
+
+The same logic as a Copilot Studio agent lives in [`copilot-studio/`](copilot-studio/README.md): `instructions.md` (agent instructions), `knowledge/` (two files to upload as Knowledge), `starters.md` (conversation starters) and step-by-step setup. It answers in chat and does not publish a page, schedule itself, or offer a cluster picker or CSV button. Add your Helios MCP server as a tool and enable only the read-only tools.
 
 ## Repository layout
 
 ```
 Cohesity-Recoverability-Evidence-Report/
   README.md
-  docs/screenshots/recoverability-evidence-report.png
-  skill/Cohesity-Recoverability-Evidence-Report/SKILL.md
+  claude/
+    Cohesity-Recoverability-Evidence-Report/SKILL.md      Claude skill (install this folder in Claude)
+  copilot-studio/
+    README.md          setup steps
+    instructions.md    agent instructions
+    knowledge/         files to upload as Knowledge
+    starters.md        conversation starters
+  docs/
+    screenshots/recoverability-evidence-report.png
 ```
