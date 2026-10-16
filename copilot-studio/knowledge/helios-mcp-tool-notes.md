@@ -5,9 +5,11 @@ Reference for the agent. Use these rules whenever you call the Helios MCP tools.
 ## General
 - Time filters are epoch microseconds in UTC (seconds x 1,000,000). Always state times in UTC.
 - Call `dataprotect-get-clusters` first. Only clusters with `isConnectedToHelios: true` can be queried, using their `clusterId` as `accessClusterId`. A cluster identifier for search calls is `<clusterId>:<incarnationId>`.
-- If `dataprotect-get-clusters` fails or times out twice, stop and tell the user: "Unable to connect to Helios." Do not answer from memory or invent numbers.
-- If a call for one cluster times out, retry once, then retry with a smaller page (`maxResultCount: 25`) and without `includeLastRunInfo`. If it still fails, say that cluster could not be assessed and carry on with the others.
-- Never invent numbers. If data is missing, write "n/a" and say why.
+- If `dataprotect-get-clusters` itself returns an error twice, stop and tell the user: "Unable to connect to Helios." Do not answer from memory or invent numbers. A cluster with `isConnectedToHelios: false` is not an error. List it as "not assessed (not connected)" and continue.
+- If a call for one cluster times out, retry once, then retry with a smaller page (`maxResultCount: 25`) and without `includeLastRunInfo`. If it still fails, say that cluster could not be assessed (timeout) and carry on with the others. A single call can time out after about 2 minutes on large clusters, so process one cluster at a time, smallest first, and never wait for all clusters before answering.
+- Never invent numbers. If data is missing, write "not available" and say why.
+
+- Scope every call. Pass `accessClusterId` of one connected cluster in every call except `dataprotect-get-clusters` and the reporting tools. A call without it asks all clusters at once and times out after about 2 minutes. Start with `maxResultCount: 25` and add `includeLastRunInfo` only on a second, smaller call if the first succeeds.
 
 ## Tools used
 | Tool | Use |

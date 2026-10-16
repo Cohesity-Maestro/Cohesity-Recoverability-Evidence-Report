@@ -7,18 +7,19 @@ Recoverability evidence over a reporting period, as a Copilot Studio agent. This
 | File | Where it goes in Copilot Studio |
 |---|---|
 | `instructions.md` | Agent, Overview, Instructions (under the 8,000 character limit) |
-| `knowledge/evidence-report-methodology.md` | Agent, Knowledge, Add knowledge, Files |
-| `knowledge/helios-mcp-tool-notes.md` | Agent, Knowledge, Add knowledge, Files |
-| `starters.md` | Agent, Overview, Conversation starters (one per line) |
+| `knowledge/evidence-report-methodology.md` | Agent, Knowledge, Add knowledge, Upload file |
+| `knowledge/helios-mcp-tool-notes.md` | Agent, Knowledge, Add knowledge, Upload file |
+| `starters.md` | Agent, Overview, Suggested prompts (one per line) |
 
 ## Setup
 
-1. In Copilot Studio, create a new agent named **Cohesity Recoverability Evidence**. Paste the description above into the agent description.
-2. Open **Overview**, choose **Edit** under Instructions, and paste the full content of `instructions.md`.
-3. Open **Knowledge**, choose **Add knowledge**, **Files**, and upload both files from `knowledge/`.
-4. Open **Tools**, choose **Add a tool**, **Model Context Protocol**, and connect your Helios MCP server (the same server the Claude skill uses as `helios-mcp`). Enable only the read-only tools listed in `knowledge/helios-mcp-tool-notes.md`. Leave write or action tools off.
-5. In **Settings**, turn **Use general knowledge** off and keep the web search off, so answers come only from Helios and the uploaded files.
-6. Add the conversation starters from `starters.md`:
+1. In Copilot Studio, choose **Agents**, then **Create blank agent** (or **New agent**), and create an agent named **Cohesity Recoverability Evidence**.
+2. On **Overview**, under **Details**, choose **Edit** and paste the one-sentence description from the top of this README into **Description** (available after the agent has finished setting up).
+3. Under **Instructions**, choose **Edit** and paste the full content of `instructions.md`.
+4. Under **Knowledge**, choose **Add knowledge**, **Upload file**, and upload both files from `knowledge/`.
+5. Under **Tools**, choose **Add tool**, **New tool**, **Model Context Protocol**, and connect your Helios MCP server (the same server the Claude skill uses as `helios-mcp`). Enable only the read-only tools listed in `knowledge/helios-mcp-tool-notes.md`. Leave write or action tools off.
+6. Keep **Web Search** disabled in the **Knowledge** section (the default), so answers come from Helios and the uploaded files.
+7. Under **Suggested prompts**, choose **Add suggested prompts** and add the prompts from `starters.md`:
 
 - Produce a recoverability evidence report for the last 30 days
 - Which protection groups have an evidence gap and why?
@@ -26,7 +27,7 @@ Recoverability evidence over a reporting period, as a Copilot Studio agent. This
 - Evidence report for the last 90 days with a 98% success threshold
 - Which groups have no offsite copy or no immutability?
 
-7. Test in the test pane, then publish and add the channels you need (Teams, Microsoft 365 Copilot).
+8. Choose **Test** and try a prompt in the test pane. Then choose **Publish** and add the channels you need on the **Channels** page (Teams, Microsoft 365 Copilot).
 
 ## Differences from the Claude skill
 
