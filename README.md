@@ -17,7 +17,7 @@ A Claude skill, also available as a Microsoft Copilot Studio agent, that turns l
 | Output | Live, private Claude Artifact, refreshed every 4 hours | Answers in chat, with tables, on demand |
 | Helios access | `helios-mcp` connector, read-only | Helios MCP server added as a tool, read-only |
 | Setup | Install the skill in Claude (see Install below) | Paste `instructions.md`, upload `knowledge/` files, add the Helios MCP tool |
-| Sample output | [Screenshot below](#screenshots-claude-version) | [copilot-studio/SAMPLE-OUTPUT.md](copilot-studio/SAMPLE-OUTPUT.md) |
+| Sample output | [claude/README.md](claude/README.md) | [copilot-studio/README.md](copilot-studio/README.md) |
 | Model | Claude | GPT-5 Chat |
 
 The sections below describe the Claude skill unless a heading says Copilot Studio.
@@ -101,12 +101,6 @@ If `helios-mcp` is down or its token has expired, a scheduled refresh does not c
 - Groups on clusters that are not connected to Helios, or whose queries time out, are not assessed and are listed as such.
 - Capped paging on very busy groups is flagged in the footnote.
 
-## Screenshots (Claude Version)
-
-![Recoverability Evidence Report](docs/screenshots/recoverability-evidence-report.png)
-
-_Captured from the published artifact; cluster and group names are lab data._
-
 ## Microsoft Copilot Studio Version
 
 The same logic as a Copilot Studio agent lives in [`copilot-studio/`](copilot-studio/README.md): `instructions.md` (agent instructions), `knowledge/` (two files to upload as Knowledge), `starters.md` (example prompts) and step-by-step setup. It answers in chat and does not publish a page, schedule itself, or offer a cluster picker or CSV button. Add your Helios MCP server as a tool and enable only the read-only tools.
@@ -117,13 +111,13 @@ The same logic as a Copilot Studio agent lives in [`copilot-studio/`](copilot-st
 Cohesity-Recoverability-Evidence-Report/
   README.md
   claude/
+    README.md          Claude sample output (screenshot)
     Cohesity-Recoverability-Evidence-Report/SKILL.md      Claude skill (install this folder in Claude)
   copilot-studio/
     README.md          setup steps
     instructions.md    agent instructions
     knowledge/         files to upload as Knowledge
     starters.md        example prompts
-    SAMPLE-OUTPUT.md   sample answer with screenshot
   docs/
     screenshots/recoverability-evidence-report.png
     screenshots/recoverability-evidence-report-copilot.png
