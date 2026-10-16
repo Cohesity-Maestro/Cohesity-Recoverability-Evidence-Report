@@ -17,7 +17,8 @@ A Claude skill, also available as a Microsoft Copilot Studio agent, that turns l
 | Output | Live, private Claude Artifact, refreshed every 4 hours | Answers in chat, with tables, on demand |
 | Helios access | `helios-mcp` connector, read-only | Helios MCP server added as a tool, read-only |
 | Setup | Install the skill in Claude (see Install below) | Paste `instructions.md`, upload `knowledge/` files, add the Helios MCP tool |
-| Screenshot | Below | Not applicable (chat answers) |
+| Sample output | [Screenshot below](#screenshots-claude-version) | [copilot-studio/SAMPLE-OUTPUT.md](copilot-studio/SAMPLE-OUTPUT.md) |
+| Model | Claude | GPT-5 Chat |
 
 The sections below describe the Claude skill unless a heading says Copilot Studio.
 
@@ -108,7 +109,7 @@ _Captured from the published artifact; cluster and group names are lab data._
 
 ## Microsoft Copilot Studio Version
 
-The same logic as a Copilot Studio agent lives in [`copilot-studio/`](copilot-studio/README.md): `instructions.md` (agent instructions), `knowledge/` (two files to upload as Knowledge), `starters.md` (conversation starters) and step-by-step setup. It answers in chat and does not publish a page, schedule itself, or offer a cluster picker or CSV button. Add your Helios MCP server as a tool and enable only the read-only tools.
+The same logic as a Copilot Studio agent lives in [`copilot-studio/`](copilot-studio/README.md): `instructions.md` (agent instructions), `knowledge/` (two files to upload as Knowledge), `starters.md` (example prompts) and step-by-step setup. It answers in chat and does not publish a page, schedule itself, or offer a cluster picker or CSV button. Add your Helios MCP server as a tool and enable only the read-only tools.
 
 ## Repository layout
 
@@ -121,7 +122,9 @@ Cohesity-Recoverability-Evidence-Report/
     README.md          setup steps
     instructions.md    agent instructions
     knowledge/         files to upload as Knowledge
-    starters.md        conversation starters
+    starters.md        example prompts
+    SAMPLE-OUTPUT.md   sample answer with screenshot
   docs/
     screenshots/recoverability-evidence-report.png
+    screenshots/recoverability-evidence-report-copilot.png
 ```
